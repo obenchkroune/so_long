@@ -30,3 +30,7 @@ re: fclean all
 
 bonus: $(BONUS_OBJ)
 	$(AR) $(NAME) $(BONUS_OBJ)
+
+.PHONY: all clean fclean re bonus
+
+.SECONDARY: $(OBJ)

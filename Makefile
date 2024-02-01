@@ -6,7 +6,7 @@
 #    By: obenchkr <obenchkr@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/01 16:54:52 by obenchkr          #+#    #+#              #
-#    Updated: 2024/02/01 21:22:05 by obenchkr         ###   ########.fr        #
+#    Updated: 2024/02/01 21:40:12 by obenchkr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,9 +34,11 @@ $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) $(CLIBS) -o $(NAME)
 
 clean:
+	make -C libft clean
 	rm -rf $(OBJ)
 
 fclean: clean
+	make -C libft fclean
 	rm -rf $(NAME)
 
 re: fclean all
