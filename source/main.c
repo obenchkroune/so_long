@@ -6,7 +6,7 @@
 /*   By: obenchkr <obenchkr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 21:22:24 by obenchkr          #+#    #+#             */
-/*   Updated: 2024/01/30 21:22:25 by obenchkr         ###   ########.fr       */
+/*   Updated: 2024/02/01 16:47:08 by obenchkr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int ac, char **av)
 	if (!map || !is_valid_map(map))
 	{
 		cleanup_matrix(map);
-		ft_putendl_fd("Invalid map!", 2);
+		ft_putendl_fd("Error\nthe selected map is invalid!", 2);
 		return (1);
 	}
 	game = init_game(map);

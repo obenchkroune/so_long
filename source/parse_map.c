@@ -6,7 +6,7 @@
 /*   By: obenchkr <obenchkr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 21:22:30 by obenchkr          #+#    #+#             */
-/*   Updated: 2024/01/30 21:22:30 by obenchkr         ###   ########.fr       */
+/*   Updated: 2024/02/01 16:47:00 by obenchkr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,22 @@ char	**parse_map(char *file)
 	char	**map;
 	size_t	height;
 
-	height = get_map_height(file);
-	map = malloc(sizeof(char *) * (height + 1));
-	if (!map)
-	{
-		perror("malloc");
-		exit(EXIT_FAILURE);
-	}
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 	{
 		perror("open");
+		exit(EXIT_FAILURE);
+	}
+	height = get_map_height(file);
+	if (height < 3)
+	{
+		ft_putendl_fd("Error\nthe selected map is invalid!", 2);
+		exit(EXIT_FAILURE);
+	}
+	map = malloc(sizeof(char *) * (height + 1));
+	if (!map)
+	{
+		perror("malloc");
 		exit(EXIT_FAILURE);
 	}
 	fill_matrix(fd, &map);

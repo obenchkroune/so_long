@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   DFS.c                                              :+:      :+:    :+:   */
+/*   check_serrounded_map.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obenchkr <obenchkr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 21:22:05 by obenchkr          #+#    #+#             */
-/*   Updated: 2024/02/01 16:39:13 by obenchkr         ###   ########.fr       */
+/*   Created: 2024/02/01 16:19:08 by obenchkr          #+#    #+#             */
+/*   Updated: 2024/02/01 16:38:19 by obenchkr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,30 @@
 #include "so_long.h"
 #include <stdbool.h>
 
-bool	dfs(char **map, int x, int y, char target)
+bool	is_serrounded(char **map)
 {
-	if (x < 0 || y < 0 || \
-		x > (int)ft_strlen(map[0]) - 1 || \
-		y > (int)ft_tabsize(map) - 1 || map[y][x] == '1' || \
-		map[y][x] == 'V')
-		return (false);
-	if (map[y][x] == target)
-		return (true);
-	map[y][x] = 'V';
-	return (dfs(map, x + 1, y, target) || dfs(map, x, y + 1, target) \
-			|| dfs(map, x - 1, y, target) || dfs(map, x, y - 1, target));
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if ((i == 0 || !map[i + 1]))
+			{
+				if (map[i][j] != '1')
+					return (false);
+			}
+			else
+			{
+				if (map[i][0] != '1' || map[i][ft_strlen(map[i]) - 1] != '1')
+					return (false);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (true);
 }

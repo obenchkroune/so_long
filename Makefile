@@ -1,14 +1,33 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: obenchkr <obenchkr@student.1337.ma>        +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/02/01 16:54:52 by obenchkr          #+#    #+#              #
+#    Updated: 2024/02/01 16:58:09 by obenchkr         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 CC			=	gcc
-CFLAGS		=	-Wall -Werror -Wextra -Iinclude -Ilibft -g -fsanitize=address
+CFLAGS		=	-Wall -Werror -Wextra -Iinclude -Ilibft
 CLIBS		=	-lmlx -lXext -lX11 -Llibft -lft
 NAME		=	so_long
 
-SRC			=	$(shell find ./source -type f -name '*.c')
-OBJ			=	$(SRC:.c=.o)
+SRC_DIR		=	./source
+OBJ_DIR		=	./object
+
+FILES		=	check_errors.c check_map.c check_serrounded_map.c cleanup.c DFS.c get_next_line.c handle_movements.c init_game.c main.c parse_map.c render_map.c utils.c
+
+SRC			=	$(addprefix $(SRC_DIR)/, $(FILES))
+OBJ			=	$(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
+
 
 all: $(NAME)
 
-.c.o:
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ)

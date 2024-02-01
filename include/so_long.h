@@ -6,7 +6,7 @@
 /*   By: obenchkr <obenchkr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:28:47 by obenchkr          #+#    #+#             */
-/*   Updated: 2024/01/30 21:08:37 by obenchkr         ###   ########.fr       */
+/*   Updated: 2024/02/01 16:23:26 by obenchkr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_game
 	int			map_size_x;
 	int			map_size_y;
 	int			collectibles_left;
+	int			movements;
 	t_sprite	brick;
 	t_sprite	player;
 	t_sprite	collectible;
@@ -56,5 +57,6 @@ int		render_map(t_game *game);
 void	cleanup_game(t_game *game);
 int		count_char_occurence(char **map, char c);
 void	handle_movements(int key_code, t_game *game);
+bool	is_serrounded(char **map);
 
 #endif

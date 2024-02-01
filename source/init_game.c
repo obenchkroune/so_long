@@ -6,7 +6,7 @@
 /*   By: obenchkr <obenchkr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:07:20 by obenchkr          #+#    #+#             */
-/*   Updated: 2024/01/30 21:21:18 by obenchkr         ###   ########.fr       */
+/*   Updated: 2024/02/01 16:26:45 by obenchkr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 void	load_sprite(t_game *game, t_sprite *sprite, char *file)
 {
-	sprite->img = mlx_xpm_file_to_image(game->mlx, file, \
-										&sprite->width, &sprite->height);
+	sprite->img = mlx_xpm_file_to_image(
+			game->mlx, file, &sprite->width, &sprite->height);
 }
 
 static void	set_player_pos(t_game *game)
@@ -55,6 +55,7 @@ t_game	*init_game(char **map)
 		return (NULL);
 	game->map_size_x = ft_strlen(map[0]);
 	game->map_size_y = ft_tabsize(map);
+	game->movements = 0;
 	width = game->map_size_x * 50;
 	height = game->map_size_y * 50;
 	game->map = map;

@@ -6,7 +6,7 @@
 /*   By: obenchkr <obenchkr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 21:21:49 by obenchkr          #+#    #+#             */
-/*   Updated: 2024/01/30 21:21:51 by obenchkr         ###   ########.fr       */
+/*   Updated: 2024/02/01 16:22:55 by obenchkr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,11 @@ static bool	player_reach_collectibles(char **_map)
 
 bool	is_valid_map(char **map)
 {
-	return (is_rectangular(map) && \
-			player_can_exit(map) && \
-			player_reach_collectibles(map) && \
+	return (count_char_occurence(map, 'C') > 0 && \
 			count_char_occurence(map, 'P') == 1 && \
 			count_char_occurence(map, 'E') == 1 && \
-			count_char_occurence(map, 'C') > 0);
+			is_rectangular(map) && \
+			player_can_exit(map) && \
+			player_reach_collectibles(map) && \
+			is_serrounded(map));
 }
