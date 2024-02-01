@@ -6,7 +6,7 @@
 /*   By: obenchkr <obenchkr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:07:20 by obenchkr          #+#    #+#             */
-/*   Updated: 2024/02/01 16:26:45 by obenchkr         ###   ########.fr       */
+/*   Updated: 2024/02/01 21:17:57 by obenchkr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ t_game	*init_game(char **map)
 	load_sprite(game, &game->collectible, "sprites/shield.xpm");
 	load_sprite(game, &game->door, "sprites/door.xpm");
 	load_sprite(game, &game->background, "sprites/background.xpm");
+	ft_putstr_fd("Moves: 0", 1);
 	return (game);
 }

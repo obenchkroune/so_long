@@ -6,7 +6,7 @@
 /*   By: obenchkr <obenchkr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 19:52:48 by obenchkr          #+#    #+#             */
-/*   Updated: 2024/01/30 21:07:06 by obenchkr         ###   ########.fr       */
+/*   Updated: 2024/02/01 21:18:37 by obenchkr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,16 @@ void	ft_move_to(t_game *game, int x, int y)
 		return ;
 	if (game->map[y][x] == 'C')
 		game->collectibles_left--;
+	game->movements++;
+	ft_putstr_fd("\rMoves: ", 1);
+	ft_putnbr_fd(game->movements, 1);
 	if (game->map[y][x] == 'E')
 	{
 		if (game->collectibles_left > 0)
 			return ;
 		else
 		{
-			ft_putendl_fd("You Won!", 1);
+			ft_putendl_fd("\nYou Won!", 1);
 			mlx_loop_end(game->mlx);
 		}
 	}
