@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obenchkr <obenchkr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 21:22:24 by obenchkr          #+#    #+#             */
-/*   Updated: 2024/02/03 22:34:47 by obenchkr         ###   ########.fr       */
+/*   Updated: 2024/02/03 23:19:07 by obenchkr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "so_long.h"
+#include "so_long_bonus.h"
 #include <mlx.h>
 #include <X11/keysym.h>
 
@@ -42,6 +42,8 @@ int	main(int ac, char **av)
 	mlx_loop_hook(game->mlx, &render_map, game);
 	mlx_loop(game->mlx);
 	cleanup_game(game);
+	ft_putstr_fd("Total moves: ", 1);
+	ft_putnbr_fd(game->movements, 1);
 	ft_putendl_fd("\nLeaving Game...", 1);
 	return (0);
 }

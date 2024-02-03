@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
+/*   check_map_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obenchkr <obenchkr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 21:21:49 by obenchkr          #+#    #+#             */
-/*   Updated: 2024/02/03 22:53:10 by obenchkr         ###   ########.fr       */
+/*   Updated: 2024/02/03 23:15:06 by obenchkr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "so_long.h"
+#include "so_long_bonus.h"
 #include <stdbool.h>
 
 static bool	is_rectangular(char **map)

@@ -6,7 +6,7 @@
 #    By: obenchkr <obenchkr@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/01 16:54:52 by obenchkr          #+#    #+#              #
-#    Updated: 2024/02/01 21:40:12 by obenchkr         ###   ########.fr        #
+#    Updated: 2024/02/03 23:16:38 by obenchkr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,35 +14,39 @@ CC			=	gcc
 CFLAGS		=	-Wall -Werror -Wextra -Iinclude -Ilibft
 CLIBS		=	-lmlx -lXext -lX11 -Llibft -lft
 NAME		=	so_long
+BONUS_NAME	=	so_long_bonus
 
-SRC_DIR		=	./source
-OBJ_DIR		=	./object
+SRC			=	$(wildcard ./source/*.c)
+OBJ			=	$(SRC:.c=.o)
 
-FILES		=	check_errors.c check_map.c check_serrounded_map.c cleanup.c DFS.c get_next_line.c handle_movements.c init_game.c main.c parse_map.c render_map.c utils.c
-
-SRC			=	$(addprefix $(SRC_DIR)/, $(FILES))
-OBJ			=	$(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
-
+BONUS_SRC	=	$(wildcard ./bonus/*.c)
+BONUS_OBJ	=	$(BONUS_SRC:.c=.o)
 
 all: $(NAME)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+bonus: $(BONUS_NAME)
+
+.c.o:
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ)
 	make -C libft all
 	$(CC) $(CFLAGS) $(OBJ) $(CLIBS) -o $(NAME)
 
+$(BONUS_NAME): $(BONUS_OBJ)
+	make -C libft all
+	$(CC) $(CFLAGS) $(BONUS_OBJ) $(CLIBS) -o $(BONUS_NAME)
+
 clean:
 	make -C libft clean
-	rm -rf $(OBJ)
+	rm -rf $(OBJ) $(BONUS_OBJ)
 
 fclean: clean
 	make -C libft fclean
-	rm -rf $(NAME)
+	rm -rf $(NAME) $(BONUS_NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
 
 .SECONDARY: $(OBJ)

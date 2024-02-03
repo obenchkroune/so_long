@@ -1,43 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_serrounded_map.c                             :+:      :+:    :+:   */
+/*   check_errors_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obenchkr <obenchkr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/01 16:19:08 by obenchkr          #+#    #+#             */
-/*   Updated: 2024/02/01 16:38:19 by obenchkr         ###   ########.fr       */
+/*   Created: 2024/01/30 21:21:44 by obenchkr          #+#    #+#             */
+/*   Updated: 2024/02/03 23:14:52 by obenchkr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "so_long.h"
-#include <stdbool.h>
+#include "so_long_bonus.h"
+#include <libft.h>
+#include <stdlib.h>
 
-bool	is_serrounded(char **map)
+void	check_errors(int ac, char **av)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	while (map[i])
+	if (ac != 2)
 	{
-		j = 0;
-		while (map[i][j])
-		{
-			if ((i == 0 || !map[i + 1]))
-			{
-				if (map[i][j] != '1')
-					return (false);
-			}
-			else
-			{
-				if (map[i][0] != '1' || map[i][ft_strlen(map[i]) - 1] != '1')
-					return (false);
-			}
-			j++;
-		}
-		i++;
+		ft_putendl_fd("usage: ./so_long [path/to/map.ber]", 2);
+		exit(EXIT_FAILURE);
 	}
-	return (true);
+	if (ft_strncmp(av[1] + ft_strlen(av[1]) - 4, ".ber", 4) != 0)
+	{
+		ft_putendl_fd(
+			"Error\ninvalid map format '.ber' extention expected.", 2);
+		exit(EXIT_FAILURE);
+	}
 }
