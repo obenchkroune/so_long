@@ -64,7 +64,7 @@ t_game	*init_game(char **map)
 	game->collectibles_left = count_char_occurence(map, 'C');
 	set_player_pos(game);
 	load_sprite(game, &game->brick, "sprites/brick.xpm");
-	load_sprite(game, &game->player, "sprites/player.xpm");
+	load_sprite(game, &game->player, "sprites/avatar.xpm");
 	load_sprite(game, &game->collectible, "sprites/shield.xpm");
 	load_sprite(game, &game->door, "sprites/door.xpm");
 	load_sprite(game, &game->background, "sprites/background.xpm");

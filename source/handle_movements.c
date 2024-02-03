@@ -6,7 +6,7 @@
 /*   By: obenchkr <obenchkr@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 19:52:48 by obenchkr          #+#    #+#             */
-/*   Updated: 2024/02/01 21:18:37 by obenchkr         ###   ########.fr       */
+/*   Updated: 2024/02/03 09:03:56 by obenchkr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,21 @@ void	print_matrix(char **map)
 	}
 }
 
+static bool	handle_exit(t_game *game, int x, int y)
+{
+	if (game->map[y][x] == 'E')
+	{
+		if (game->collectibles_left > 0)
+			return (false);
+		else
+		{
+			ft_putendl_fd("\nYou Won!", 1);
+			mlx_loop_end(game->mlx);
+		}
+	}
+	return (true);
+}
+
 void	ft_move_to(t_game *game, int x, int y)
 {
 	int	pos_x;
@@ -50,16 +65,8 @@ void	ft_move_to(t_game *game, int x, int y)
 	game->movements++;
 	ft_putstr_fd("\rMoves: ", 1);
 	ft_putnbr_fd(game->movements, 1);
-	if (game->map[y][x] == 'E')
-	{
-		if (game->collectibles_left > 0)
-			return ;
-		else
-		{
-			ft_putendl_fd("\nYou Won!", 1);
-			mlx_loop_end(game->mlx);
-		}
-	}
+	if (!handle_exit(game, x, y))
+		return ;
 	game->map[pos_y][pos_x] = '0';
 	game->map[y][x] = 'P';
 	game->player_x = x;

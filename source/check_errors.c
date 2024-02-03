@@ -23,7 +23,8 @@ void	check_errors(int ac, char **av)
 	}
 	if (ft_strncmp(av[1] + ft_strlen(av[1]) - 4, ".ber", 4) != 0)
 	{
-		ft_putendl_fd("Error\ninvalid map format '.ber' extention expected.", 2);
+		ft_putendl_fd(
+			"Error\ninvalid map format '.ber' extention expected.", 2);
 		exit(EXIT_FAILURE);
 	}
 }
